@@ -390,7 +390,6 @@ class TCardState extends State<TCard> with TickerProviderStateMixin {
        _runChangeOrderAnimation();
        if (isSwipeLeft) {
          _swipeInfoList.add(SwipeInfo(_frontCardIndex, SwipeDirection.Left));
-       } else {
        } else if (isSwipeRight) {
          _swipeInfoList.add(SwipeInfo(_frontCardIndex, SwipeDirection.Right));
        } else if (isSwipeUp) {
