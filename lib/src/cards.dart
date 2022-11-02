@@ -15,7 +15,7 @@ class TCard extends StatefulWidget {
   /// 卡片尺寸
   final Size size;
 
-  final Function setDraggedCardInfo;
+  final Function? setDraggedCardInfo;
 
   /// 卡片列表
   final List<Widget> cards;
@@ -56,7 +56,7 @@ class TCard extends StatefulWidget {
     this.slideSpeed = 20,
     this.delaySlideFor = 500,
     this.size = const Size(380, 400),
-    required this.setDraggedCardInfo,
+    this.setDraggedCardInfo,
   })  : assert(cards != null),
         assert(cards.length > 0);
 
@@ -463,6 +463,8 @@ class TCardState extends State<TCard> with TickerProviderStateMixin {
     super.dispose();
   }
 
+  bool alreadySent = false;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox.fromSize(
@@ -485,12 +487,20 @@ class TCardState extends State<TCard> with TickerProviderStateMixin {
                           _stop();
                         },
                         onPanUpdate: (DragUpdateDetails details) {
+
+                          if (widget.setDraggedCardInfo != null && alreadySent == false) {
+                            alreadySent = true;
                             widget.setDraggedCardInfo(_frontCardIndex);
+                          }
                           _updateFrontCardAlignment(details, size);
                         },
                         
                         onPanEnd: (DragEndDetails details) {
+
+                             if (widget.setDraggedCardInfo != null) {
+                              alreadySent = false;
                           widget.setDraggedCardInfo(-1);
+                             }
                           _judgeRunAnimation(details, size);
                         },
                       ),
