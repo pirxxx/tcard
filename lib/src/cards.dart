@@ -488,6 +488,7 @@ class TCardState extends State<TCard> with TickerProviderStateMixin {
                             widget.setDraggedCardInfo(_frontCardIndex);
                           _updateFrontCardAlignment(details, size);
                         },
+                        
                         onPanEnd: (DragEndDetails details) {
                           widget.setDraggedCardInfo(-1);
                           _judgeRunAnimation(details, size);
