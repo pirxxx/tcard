@@ -490,7 +490,7 @@ class TCardState extends State<TCard> with TickerProviderStateMixin {
 
                           if (widget.setDraggedCardInfo != null && alreadySent == false) {
                             alreadySent = true;
-                            widget?.setDraggedCardInfo(_frontCardIndex)!;
+                            widget?.setDraggedCardInfo(_frontCardIndex);
                           }
                           _updateFrontCardAlignment(details, size);
                         },
